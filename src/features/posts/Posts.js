@@ -27,7 +27,7 @@ export default function Posts({showedPost, clickedSubredditName, search}) {
 
     toggleComments.style.display === 'none' ? toggleComments.style.display = 'block' : toggleComments.style.display = 'none';
 
-    if (posts[clickedPostId].comments.length !== 0) return;
+    if (posts[clickedPostId].comments.length !== 0 || posts[clickedPostId].commentsNum === 0) return;
 
     trackPromise(fetch(`https://www.reddit.com${clickedSubredditName}comments/${clickedShortPostId}.json`)
       .then(response => {

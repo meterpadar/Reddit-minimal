@@ -3,7 +3,7 @@ import subredditsReducer from './../features/subreddits/subredditsSlice.js';
 import postsReducer from './../features/posts/postsSlice.js';
 import commentsReducer from './../features/posts/commentsSlice.js';
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     subreddits: subredditsReducer,
     posts: postsReducer,
