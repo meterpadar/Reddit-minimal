@@ -1,16 +1,13 @@
 import React from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { trackPromise } from'react-promise-tracker';
 import Comments from './Comments.js';
 import { selectPosts, addCommentIdToPost } from './postsSlice.js';
-import { selectSubreddits } from './../subreddits/subredditsSlice.js';
 import { renderComments } from './commentsSlice.js';
 import { LoadingIndicator } from './../../index.js';
 
 export default function Posts({showedPost, clickedSubredditName, search}) {
   const posts = useSelector(selectPosts);
-  const subreddits = useSelector(selectSubreddits);
   const dispatch = useDispatch();
 
   const kFormatter = (num) => {
@@ -69,9 +66,9 @@ export default function Posts({showedPost, clickedSubredditName, search}) {
         <div className='post' key={post.id} style={post.subredditId !== showedPost || !post.title.includes(search) ? {display: 'none'} : {display: 'block'}}> 
           <div className='main-post'>
             <div className='arrows'>
-              <a href='#'><i className="fas fa-arrow-alt-circle-up fa-lg"></i></a>
+              <button><i className="fas fa-arrow-alt-circle-up fa-lg"></i></button>
               <span>{kFormatter(post.score)}</span>
-              <a href='#'><i className="fas fa-arrow-alt-circle-down fa-lg"></i></a>
+              <button><i className="fas fa-arrow-alt-circle-down fa-lg"></i></button>
             </div>
             <div className='post-container'>
               <div>
@@ -89,7 +86,7 @@ export default function Posts({showedPost, clickedSubredditName, search}) {
                 }
                 {
                   post.youtube ?
-                  <iframe width="100%" height="315" src={post.youtube} frameborder="0" allowfullscreen>
+                  <iframe title={post.youtube} width="100%" height="315" src={post.youtube} frameborder="0" allowfullscreen>
                   </iframe> : null
                 }
               </div>
@@ -102,14 +99,13 @@ export default function Posts({showedPost, clickedSubredditName, search}) {
                     : <span className='time-ago'>{Math.ceil((((new Date() - new Date(post.time * 1000)) / 60000) / 60) / 24)} days ago</span>
                   }
                 <span>
-                  <a 
-                    href='#'
+                  <button 
                     short-post-id={post.shortPostId}
                     post-id={post.id}
                     onClick={showComments}
                   >
                     <i className="far fa-comment fa-lg"></i>
-                  </a>
+                  </button>
                   <span className='num-comments'>{post.commentsNum}</span>
                 </span>
               </div>

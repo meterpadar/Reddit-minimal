@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { trackPromise } from'react-promise-tracker';
 import { selectSubreddits, addPostIdToSubreddit } from './subredditsSlice.js';
 import { renderPosts, selectPosts } from './../posts/postsSlice.js';
-import { LoadingIndicator } from './../../index.js';
 
 export default function Subreddits({showedPost, setShowedPost, setClickedSubredditName, setSearch}) {
   const subreddits = useSelector(selectSubreddits);

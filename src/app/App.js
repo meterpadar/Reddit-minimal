@@ -22,13 +22,14 @@ export default function App() {
     trackPromise(
       Reddit.fetchSubreddits().then(subreddits => {
         subreddits.map(subreddit => {
-        dispatch(renderSubreddits({
-          id: subreddit.name,
-          title: subreddit.display_name_prefixed,
-          iconImg: subreddit.icon_img,
-          url: subreddit.url,
-          posts: {}
-        }))
+          
+          dispatch(renderSubreddits({
+            id: subreddit.name,
+            title: subreddit.display_name_prefixed,
+            iconImg: subreddit.icon_img,
+            url: subreddit.url,
+            posts: {}
+          }))
       })})
     , 'posts');
     
