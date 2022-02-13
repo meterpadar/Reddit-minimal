@@ -83,7 +83,7 @@ export default function Subreddits({showedPost, setShowedPost, setClickedSubredd
   };
 
   return (
-    <div className="subreddits">
+    <div id='subreddits'>
       <h1>Subreddits</h1>
       {Object.values(subreddits).map((subreddit) => (
         <a
